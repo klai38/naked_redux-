@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Naked Redux</title>
+</head>
+
+<body>
+    <div id="root">
+        <h2 style="text-align: center">These are all my fellow Tomodachis!</h2>
+        <div id ="friends"> </div>
+        <button id="addmore"> </button>
+        <script src="./bundle.js"> </script>
+        <script>
+            import Create from '../src/Create'
+            
+    const defaultState = {
+        currentView: < List />
+    };
+
+         function counter(state = defaultState, action) {
+                if (typeof state === 'undefined') {
+                    return ["Tomodachi"]
+                }
+                switch (action.type) {
+                    case 'ADD_FRIEND':
+                        return < Create /> 
+                    default:
+                        return state
+                }
+            }
+
+             var store = Redux.createStore(counter)
+                var friendsSection = document.getElementById('friends')
+                function render() {
+                    friendsSection.innerHTML = store.getState().toString()
+                }
+                render()
+                store.subscribe(render)
+                document.getElementById('addmore')
+                    .addEventListener('click', function () {
+                        store.dispatch({ type: 'ADD_FRIEND' })
+                    })
+
+        </script> 
+    </div>
+</body>
+
+</html>
